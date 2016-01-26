@@ -1,0 +1,60 @@
+﻿<Window x:Class="FitbitWorkout.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FitbitWorkout"
+        xmlns:chart="http://schemas.syncfusion.com/wpf" 
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1000" 
+        WindowStartupLocation="CenterScreen"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Resources>
+
+            <DataTemplate x:Key="labelTemplate">
+                <TextBlock Text="{Binding LabelContent}" Foreground="Black"  FontSize="16"/>
+            </DataTemplate>
+
+            <Style TargetType="Line" x:Key="AxisStyle">
+                <Setter Property="Stroke" Value="DarkGray"  />
+                <Setter Property="StrokeThickness" Value="1"/>
+            </Style>
+
+            <Style TargetType="Line" x:Key="AxisStyle1">
+                <Setter Property="Stroke" Value="DarkGray"  />
+                <Setter Property="StrokeThickness" Value="0.5"/>
+            </Style>
+        </Grid.Resources>
+
+        <chart:SfChart x:Name="weightChart" AreaBorderBrush="#8e8e8e" 
+                       Background="White" Margin="25,-30,25,22" Height="492" 
+                       VerticalAlignment="Bottom" AreaBorderThickness="0,1,1,1">
+
+            <chart:SfChart.Header>
+                <TextBlock FontSize="22" Foreground="Black" FontFamily="Segoe UI" 
+                           Margin="0,-10,0,5">Weight in the last 30 days</TextBlock>
+            </chart:SfChart.Header>
+
+            <chart:SfChart.PrimaryAxis>
+                <chart:CategoryAxis  Header="Date" Foreground="Black"  FontSize="20" 
+                                     LabelTemplate="{StaticResource labelTemplate}"
+                                     AxisLineStyle="{StaticResource AxisStyle1}" 
+                                     MajorTickLineStyle="{StaticResource AxisStyle}">
+                </chart:CategoryAxis>
+            </chart:SfChart.PrimaryAxis>
+
+            <chart:SfChart.SecondaryAxis>
+                <chart:NumericalAxis FontSize="20" Minimum="0" Maximum="120" Interval="1"  
+                                     Header="Weight &amp; BMI" Foreground="Black"
+                                     LabelTemplate="{StaticResource labelTemplate}" 
+                                     AxisLineStyle="{StaticResource AxisStyle}"
+                                     MajorTickLineStyle="{StaticResource AxisStyle}"/>
+            </chart:SfChart.SecondaryAxis>
+
+ 
+
+        </chart:SfChart>
+    </Grid>
+
+</Window>
